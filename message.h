@@ -16,6 +16,7 @@ struct Message{
     QString senderip_string;
     quint16 senderinfo;
     QTime timestamp;
+    QDate date;
     MessageType type;
 
     Message();
@@ -24,14 +25,17 @@ struct Message{
         data(data), message(message), senderip(senderip), senderinfo(senderinfo)
     {
         timestamp = QTime::currentTime();
+        date = QDate::currentDate();
 
         if (message.indexOf("HANDSHAKE") > 1){
             type = MessageType::HANDSHAKE;
         }
-        else if(message.indexOf("***") == 1){
+        else if(message.indexOf("IMPORTANT") == 0){
             type = MessageType::IMPORTANT;
+            this->message.remove(QString("IMPORTANT"), Qt::CaseSensitive);
+            qDebug() << "Important Message Created";
         }
-        else if(message.indexOf("HANDSHAKE_REPLY") >= 1){
+        else if(message.indexOf("HANDSHAKE_REPLY") == 0){
             type = MessageType::HANDSHAKE_REPLY;
         }
         else{

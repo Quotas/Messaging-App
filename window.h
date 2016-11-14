@@ -8,6 +8,7 @@
 #include <QListWidget>
 
 #include <QUuid>
+#include <fstream>
 #include "customevents.h"
 #include "message.h"
 #include "messagehandler.h"
@@ -45,11 +46,21 @@ private:
     Ui::Window* ui;
     QListWidgetItem * m_currentClient;
     QString name;
+    QMenu *fileMenu;
+    QMenu *editMenu;
+    QMenu *formatMenu;
+    QMenu *helpMenu;
+
+    QAction *saveAct;
+
+    bool important = false;
 
 
 
 private slots:
     void sendMessage();
+    void toggleImportant();
+    void saveMessage(Message *message);
     void updateCurrentClient(QListWidgetItem* item){ m_currentClient = item; qDebug() << m_currentClient->text(); }
 };
 

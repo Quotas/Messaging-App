@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>370</height>
+    <width>472</width>
+    <height>371</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,11 +23,17 @@
       <height>201</height>
      </rect>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="clearButton">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>300</x>
       <y>270</y>
       <width>141</width>
       <height>41</height>
@@ -48,6 +54,12 @@
     </property>
     <property name="text">
      <string>Submit</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="textLabel">
@@ -95,6 +107,22 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>240</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Important</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -102,7 +130,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>450</width>
+     <width>472</width>
      <height>21</height>
     </rect>
    </property>
@@ -118,21 +146,44 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>inputField</tabstop>
+  <tabstop>submitButton</tabstop>
+  <tabstop>clearButton</tabstop>
+  <tabstop>messageField</tabstop>
+  <tabstop>clientList</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
    <sender>clearButton</sender>
    <signal>clicked()</signal>
-   <receiver>messageField</receiver>
+   <receiver>inputField</receiver>
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>100</x>
-     <y>273</y>
+     <x>280</x>
+     <y>306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>215</x>
-     <y>148</y>
+     <x>155</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>inputField</sender>
+   <signal>returnPressed()</signal>
+   <receiver>submitButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>155</x>
+     <y>282</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>100</x>
+     <y>323</y>
     </hint>
    </hints>
   </connection>
