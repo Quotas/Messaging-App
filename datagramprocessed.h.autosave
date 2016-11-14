@@ -1,0 +1,14 @@
+#ifndef DATAGRAMPROCESSED_H
+#define DATAGRAMPROCESSED_H
+
+#include <QEvent>
+
+
+
+class MyEvent : public QEvent {
+public:
+    static const QEvent::Type myType = static_cast<QEvent::Type>(2000);
+    // ...
+};
+
+#endif // DATAGRAMPROCESSED_H
