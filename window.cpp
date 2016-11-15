@@ -43,12 +43,30 @@ Window::~Window()
     delete ui;
 }
 
+void Window::playAlert(){
+
+    //player = new QMediaPlayer;
+    //player->setMedia(QUrl::fromLocalFile("Alert.mp3"));
+    //player->setVolume(15);
+    //player->play();
+
+    //connect(player, SIGNAL(stateChanged(QMediaPlayer::State)), player, SLOT(stop()));
+    QSound::play("chime.wav");
+
+}
+
 bool Window::event(QEvent *event)
 {
-
+    QString message;
     switch(event->type()){
+
         case DATAGRAM_PROCCESSED_SENT :
-            ui->messageField->append(name + ": " + MessageHandler::getMostRecentMessage(false)->message);
+            if(MessageHandler::getMostRecentMessage(false)->type == MessageType::IMPORTANT){
+                playAlert();
+                message += "IMPORTANT: ";
+            }
+            message += name + ": " + MessageHandler::getMostRecentMessage(false)->message;
+            ui->messageField->append(message);
             saveMessage(MessageHandler::getMostRecentMessage(false));
             return true;
         case DATAGRAM_PROCCESSED_RECEIVED :
@@ -95,7 +113,12 @@ void Window::saveMessage(Message *message){
     QFile file("test.txt");
     if (!file.open(QIODevice::Append | QIODevice::WriteOnly | QIODevice::Text))
         return;
+    //Add encryption when we are writing to the text stream
+    //Need to access our crypto device in our netowork listener - maybe need to have a better interface for that
 
+
+
+    //Maybe we also need to add error logging in some way?
     QTextStream out(&file);
 
     if (message->type == MessageType::IMPORTANT){

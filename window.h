@@ -6,6 +6,8 @@
 #include <QtNetwork/QtNetwork>
 #include <QInputDialog>
 #include <QListWidget>
+#include <QMediaPlayer>
+#include <QSound>
 
 #include <QUuid>
 #include <fstream>
@@ -39,6 +41,7 @@ public:
     bool event(QEvent *event);
 
     void setName(QString pname){ name = pname;}
+    void playAlert();
 
 
 private:    
@@ -50,8 +53,11 @@ private:
     QMenu *editMenu;
     QMenu *formatMenu;
     QMenu *helpMenu;
+    QMediaPlayer *player;
 
     QAction *saveAct;
+
+
 
     bool important = false;
 
