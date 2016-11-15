@@ -30,7 +30,6 @@ Window::Window(QWidget *parent) :
     saveAct = new QAction(tr("&Save All"), this);
     saveAct->setShortcuts(QKeySequence::Save);
     saveAct->setStatusTip(tr("Save all messages"));
-    connect(saveAct, SIGNAL(triggered()), this, SLOT(newFile()));
 
     fileMenu->addAction(saveAct);
 

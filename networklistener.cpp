@@ -11,6 +11,7 @@ NetworkListener::NetworkListener(QObject *parent) : QObject(parent)
     udpSocketOut = new QUdpSocket(this);
     udpSocketOut->setSocketOption(QAbstractSocket::MulticastTtlOption, 1);
 
+
     udpSocketIn = new QUdpSocket(this);
     udpSocketIn->bind(QHostAddress::AnyIPv4, 45454, QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
     //udpSocketIn->joinMulticastGroup(groupAddress);
@@ -20,9 +21,12 @@ NetworkListener::NetworkListener(QObject *parent) : QObject(parent)
     for (int i = 0; i < mListIfaces.length(); ++i) {
         bool rez = udpSocketIn->joinMulticastGroup(groupAddress, mListIfaces.at(i));
 
+
         qDebug() << rez;
         if (rez){
             qDebug() << mListIfaces.at(i);
+            udpSocketOut->bind();
+            udpSocketOut->setMulticastInterface(mListIfaces.at(i));
         }
     }
 
@@ -35,6 +39,9 @@ NetworkListener::NetworkListener(QObject *parent) : QObject(parent)
             << "could not determine local IPv4 address:"
             << socket.errorString();
     }
+
+    udpSocketIn->setSocketOption(QAbstractSocket::MulticastLoopbackOption, QVariant(1));
+    udpSocketOut->setSocketOption(QAbstractSocket::MulticastLoopbackOption, QVariant(1));
 
     connect(udpSocketIn, SIGNAL(readyRead()), this, SLOT(processPendingDatagrams()));
 
