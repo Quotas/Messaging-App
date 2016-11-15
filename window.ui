@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Window</string>
+   <string>Woof</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTextEdit" name="messageField">
@@ -158,7 +158,7 @@
   <connection>
    <sender>clearButton</sender>
    <signal>clicked()</signal>
-   <receiver>inputField</receiver>
+   <receiver>messageField</receiver>
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -167,7 +167,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>155</x>
-     <y>282</y>
+     <y>163</y>
     </hint>
    </hints>
   </connection>

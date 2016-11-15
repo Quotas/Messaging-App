@@ -107,7 +107,7 @@ public:
 
     void retranslateUi(QMainWindow *Window)
     {
-        Window->setWindowTitle(QApplication::translate("Window", "Window", 0));
+        Window->setWindowTitle(QApplication::translate("Window", "Woof", 0));
         clearButton->setText(QApplication::translate("Window", "Clear", 0));
         submitButton->setText(QApplication::translate("Window", "Submit", 0));
         textLabel->setText(QApplication::translate("Window", "Messsages", 0));

@@ -26,7 +26,9 @@ class NetworkListener: public QObject
 public:
     explicit NetworkListener(QObject *parent = 0);
     Client* getMostRecentClient() { if (m_clientList.size() != 0) {return &(m_clientList.back()); } else { return NullClient; } }
+    Client* getMostRecentDisconnected() { if (m_disconnected.size() != 0) {return &(m_disconnected.back()); } else { return NullClient; } }
     void sendHandShake(QString name);
+    void sendDisconnect(QString name);
 
 private:
     QHostAddress groupAddress;
@@ -34,6 +36,7 @@ private:
     QUdpSocket *udpSocketOut;
     QUdpSocket *udpSocketIn;
     std::vector<Client> m_clientList;
+    std::vector<Client> m_disconnected;
     SimpleCrypt cryptodevice;
 
 

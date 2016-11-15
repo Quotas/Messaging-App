@@ -76,11 +76,31 @@ bool Window::event(QEvent *event)
             //grab our recently connceted client and update the client list in the ui
             ui->clientList->addItem(m_networkListener->getMostRecentClient()->name);
             return true;
+        case CLIENT_DISCONNECTED :
+            QList<QListWidgetItem *> items = ui->clientList->findItems(m_networkListener->getMostRecentDisconnected()->name,  Qt::MatchContains);
 
+            QListWidgetItem* item = ui->clientList->takeItem(ui->clientList->row(items.at(0)));
+            delete item;
+            return true;
 }
 
 return QWidget::event(event);
 
+}
+
+void Window::closeEvent (QCloseEvent *event)
+{
+    QMessageBox::StandardButton resBtn = QMessageBox::question( this, "Secure Messaging"
+                                                                      "",
+                                                                tr("Are you sure?\n"),
+                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                QMessageBox::Yes);
+    if (resBtn != QMessageBox::Yes) {
+        event->ignore();
+    } else {
+        m_networkListener->sendDisconnect(name);
+        event->accept();
+    }
 }
 
 void Window::sendMessage(){
@@ -92,6 +112,8 @@ void Window::sendMessage(){
         message = ui->inputField->text();
     }
     m_networkListener->sendDatagram(message);
+
+    ui->inputField->clear();
 
 
 

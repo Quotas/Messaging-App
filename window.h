@@ -6,6 +6,8 @@
 #include <QtNetwork/QtNetwork>
 #include <QInputDialog>
 #include <QListWidget>
+#include <QCloseEvent>
+#include <QMessageBox>
 #include <QMediaPlayer>
 #include <QSound>
 
@@ -60,6 +62,8 @@ private:
 
 
     bool important = false;
+
+    void closeEvent(QCloseEvent *event);
 
 
 

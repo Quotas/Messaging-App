@@ -6,7 +6,7 @@
 
 
 
-enum MessageType { HANDSHAKE, IMPORTANT, DEFAULT, HANDSHAKE_REPLY };
+enum MessageType { HANDSHAKE, IMPORTANT, DEFAULT, HANDSHAKE_REPLY, DISCONNECT };
 
 struct Message{
 
@@ -37,6 +37,9 @@ struct Message{
         }
         else if(message.indexOf("HANDSHAKE_REPLY") == 0){
             type = MessageType::HANDSHAKE_REPLY;
+        }
+        else if(message.indexOf("DISCONNECT") > 1){
+            type = MessageType::DISCONNECT;
         }
         else{
             type = MessageType::DEFAULT;

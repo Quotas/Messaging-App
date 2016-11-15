@@ -5,6 +5,7 @@
 #include <QEvent>
 
 const QEvent::Type CLIENT_CONNECTED = static_cast<QEvent::Type>(QEvent::User + 1);
+const QEvent::Type CLIENT_DISCONNECTED = static_cast<QEvent::Type>(QEvent::User + 4);
 const QEvent::Type DATAGRAM_PROCCESSED_SENT = static_cast<QEvent::Type>(QEvent::User + 2);
 const QEvent::Type DATAGRAM_PROCCESSED_RECEIVED = static_cast<QEvent::Type>(QEvent::User + 3);
 
@@ -27,6 +28,12 @@ public:
 class ClientConnected : public QEvent {
 public:
     ClientConnected() : QEvent(CLIENT_CONNECTED) {}
+
+};
+
+class ClientDisconnected : public QEvent {
+public:
+    ClientDisconnected() : QEvent(CLIENT_DISCONNECTED) {}
 
 };
 

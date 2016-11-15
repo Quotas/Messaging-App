@@ -17,13 +17,13 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:strictStrings -Zc:throwingNew -Zi -M
 INCPATH       = -I. -IC:\Qt\5.7\msvc2015_64\include -IC:\Qt\5.7\msvc2015_64\include\QtMultimedia -IC:\Qt\5.7\msvc2015_64\include\QtWidgets -IC:\Qt\5.7\msvc2015_64\include\QtGui -IC:\Qt\5.7\msvc2015_64\include\QtANGLE -IC:\Qt\5.7\msvc2015_64\include\QtNetwork -IC:\Qt\5.7\msvc2015_64\include\QtCore -Idebug -I. -IC:\Qt\5.7\msvc2015_64\mkspecs\win32-msvc2015 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:C:\Qt\5.7\msvc2015_64\lib C:\Qt\5.7\msvc2015_64\lib\qtmaind.lib /LIBPATH:C:\utils\postgresql\pgsql\lib /LIBPATH:C:\utils\my_sql\my_sql\lib shell32.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Multimediad.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Widgetsd.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Guid.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Networkd.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Cored.lib 
+LIBS          = /LIBPATH:C:\Qt\5.7\msvc2015_64\lib C:\Qt\5.7\msvc2015_64\lib\qtmaind.lib /LIBPATH:C:\utils\postgresql\pgsql\lib /LIBPATH:C:\utils\my_sql\my_sql\lib shell32.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Multimediad.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Widgetsd.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Guid.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Networkd.lib C:\Qt\5.7\msvc2015_64\lib\Qt5Cored.lib debug\myapp.res 
 QMAKE         = C:\Qt\5.7\msvc2015_64\bin\qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = debug\myapp.res
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -124,10 +124,13 @@ DESTDIR_TARGET = debug\SecureMessaging.exe
 first: all
 all: Makefile.Debug  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_window.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_window.h $(OBJECTS) debug\myapp.res
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
 $(OBJECTS) $(LIBS)
 <<
+
+debug\myapp.res: myapp.rc
+	rc -D_DEBUG $(DEFINES) -fo debug\myapp.res myapp.rc
 
 qmake: FORCE
 	@$(QMAKE) -spec win32-msvc2015 "CONFIG+=debug" -o Makefile.Debug SecureMessaging.pro
@@ -140,6 +143,7 @@ dist:
 clean: compiler_clean 
 	-$(DEL_FILE) debug\main.obj debug\window.obj debug\simplecrypt.obj debug\networklistener.obj debug\messagehandler.obj debug\moc_window.obj debug\moc_networklistener.obj debug\moc_messagehandler.obj
 	-$(DEL_FILE) debug\SecureMessaging.exp debug\SecureMessaging.ilk debug\SecureMessaging.idb
+	-$(DEL_FILE) debug\myapp.res
 
 distclean: clean 
 	-$(DEL_FILE) debug\SecureMessaging.lib debug\SecureMessaging.pdb
@@ -445,6 +449,9 @@ debug\moc_window.cpp: C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qstyle.h \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qtabbar.h \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qrubberband.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QCloseEvent \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMessageBox \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qmessagebox.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\QMediaPlayer \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaplayer.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaobject.h \
@@ -454,6 +461,8 @@ debug\moc_window.cpp: C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaresource.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaenumdebug.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qaudio.h \
+		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\QSound \
+		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qsound.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QUuid \
 		customevents.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QEvent \
@@ -1281,6 +1290,9 @@ debug\main.obj: main.cpp window.h \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qstyle.h \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qtabbar.h \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qrubberband.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QCloseEvent \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMessageBox \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qmessagebox.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\QMediaPlayer \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaplayer.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaobject.h \
@@ -1290,6 +1302,8 @@ debug\main.obj: main.cpp window.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaresource.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaenumdebug.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qaudio.h \
+		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\QSound \
+		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qsound.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QUuid \
 		customevents.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QEvent \
@@ -1590,6 +1604,9 @@ debug\window.obj: window.cpp window.h \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qstyle.h \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qtabbar.h \
 		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qrubberband.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QCloseEvent \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMessageBox \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qmessagebox.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\QMediaPlayer \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaplayer.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaobject.h \
@@ -1599,6 +1616,8 @@ debug\window.obj: window.cpp window.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaresource.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qmediaenumdebug.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qaudio.h \
+		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\QSound \
+		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qsound.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QUuid \
 		customevents.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QEvent \
@@ -1608,7 +1627,38 @@ debug\window.obj: window.cpp window.h \
 		simplecrypt.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
 		client.h \
-		ui_window.h
+		ui_window.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QAction \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qaction.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QApplication \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qapplication.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qguiapplication.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qinputmethod.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QButtonGroup \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QCheckBox \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QHeaderView \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qheaderview.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QLabel \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qlabel.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QLineEdit \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMenuBar \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qmenubar.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qmenu.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QPushButton \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QStatusBar \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qstatusbar.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QTextEdit \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qtextedit.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qtextdocument.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QToolBar \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qtoolbar.h \
+		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QWidget
 
 debug\simplecrypt.obj: simplecrypt.cpp simplecrypt.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QString \

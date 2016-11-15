@@ -9,6 +9,8 @@ QT += network
 QT += multimedia
 CONFIG += c++11
 
+RC_FILE = myapp.rc
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = SecureMessaging

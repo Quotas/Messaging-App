@@ -95,6 +95,20 @@ void NetworkListener::processPendingDatagrams(){
             delete client;
             return;
         }
+
+        if(message->type == MessageType::DISCONNECT){
+            QString temp = datagram_message;
+            temp.chop(10); // chop the end of our message string off
+            QString clientname = temp;
+            Client *client = new Client(clientname, sender);
+            qDebug() << client->name;
+            m_disconnected.push_back(*client);
+            ClientDisconnected* event = new ClientDisconnected();
+            parent()->event(event);
+            delete client;
+            return;
+
+        }
         //Fall through if it is just a default message
         //Having the messagetype be default instead of null is better practice
         MessageHandler::handleMessage(*message, true);
@@ -116,6 +130,12 @@ void NetworkListener::sendHandShake(QString name){
 
 
 
+}
+
+void NetworkListener::sendDisconnect(QString name){
+
+    QString message = name + "DISCONNECT";
+    sendDatagram(message);
 }
 
 void NetworkListener::sendDatagram(QString a_message, Client *a_client){
