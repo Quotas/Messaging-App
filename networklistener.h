@@ -6,13 +6,16 @@
 #include <QtNetwork/QtNetwork>
 #include <QObject>
 #include <vector>
-
+#include <WinSock2.h>
+#include <stdio.h>
 
 #include "message.h"
 #include "simplecrypt.h"
 #include "client.h"
 #include "messagehandler.h"
 #include "customevents.h"
+
+#pragma comment(lib, "Ws2_32.lib")
 
 
 extern Client* NullClient;

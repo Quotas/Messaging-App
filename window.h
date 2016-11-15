@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QMediaPlayer>
 #include <QSound>
+#include <WinSock2.h>
 
 #include <QUuid>
 #include <fstream>

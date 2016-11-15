@@ -6,11 +6,9 @@ NetworkListener::NetworkListener(QObject *parent) : QObject(parent)
 
     cryptodevice.setKey(0x0c2ad4a4acb9f015);
 
-    groupAddress = QHostAddress("239.255.43.21");
+    groupAddress = QHostAddress("238.38.38.38");
 
     udpSocketOut = new QUdpSocket(this);
-    udpSocketOut->setSocketOption(QAbstractSocket::MulticastTtlOption, 1);
-
 
     udpSocketIn = new QUdpSocket(this);
     udpSocketIn->bind(QHostAddress::AnyIPv4, 45454, QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
@@ -42,6 +40,9 @@ NetworkListener::NetworkListener(QObject *parent) : QObject(parent)
 
     udpSocketIn->setSocketOption(QAbstractSocket::MulticastLoopbackOption, QVariant(1));
     udpSocketOut->setSocketOption(QAbstractSocket::MulticastLoopbackOption, QVariant(1));
+    bool bOptVal = TRUE;
+
+    setsockopt(udpSocketIn->socketDescriptor(), SOL_SOCKET, SO_RCVBUF, (char*) &bOptVal, sizeof(int));
 
     connect(udpSocketIn, SIGNAL(readyRead()), this, SLOT(processPendingDatagrams()));
 
@@ -166,6 +167,7 @@ void NetworkListener::sendDatagram(QString a_message, Client *a_client){
             else{
                 udpSocketOut->writeDatagram(datagram.data(), datagram.size(), groupAddress, 45454);
                 Message messageObj = Message(datagram, message, groupAddress, 45454);
+                qDebug() << "Packet send to multicast group";
                 //MessageHandler::handleMessage(messageObj, false);
 
             }
