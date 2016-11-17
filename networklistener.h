@@ -30,8 +30,17 @@ public:
     explicit NetworkListener(QObject *parent = 0);
     Client* getMostRecentClient() { if (m_clientList.size() != 0) {return &(m_clientList.back()); } else { return NullClient; } }
     Client* getMostRecentDisconnected() { if (m_disconnected.size() != 0) {return &(m_disconnected.back()); } else { return NullClient; } }
+    Client* getClient(QString name);
+    void removeClient(QString name);
+
     void sendHandShake(QString name);
+    void sendHandShakeReply();
     void sendDisconnect(QString name);
+
+
+
+    QString name;
+
 
 private:
     QHostAddress groupAddress;

@@ -7,6 +7,8 @@ Window::Window(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Window)
 {
+    //lol regular expressions
+    re.setPattern("^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
     ui->setupUi(this);
     m_networkListener = new NetworkListener(this);
 
@@ -15,7 +17,7 @@ Window::Window(QWidget *parent) :
                                          tr("User name:"), QLineEdit::Normal,
                                          QDir::home().dirName(), &ok);
     if (ok && !text.isEmpty())
-        name = text;
+        setName(text);
 
     connect(ui->submitButton, SIGNAL(clicked()), this, SLOT(sendMessage()));
     connect(ui->clientList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(updateCurrentClient(QListWidgetItem*)));
@@ -29,9 +31,19 @@ Window::Window(QWidget *parent) :
 
     saveAct = new QAction(tr("&Save All"), this);
     saveAct->setShortcuts(QKeySequence::Save);
-    saveAct->setStatusTip(tr("Save all messages"));
+    saveAct->setStatusTip(tr("Save all messages."));
+
+    clearAct = new QAction(tr("&Clear All"), this);
+    clearAct->setStatusTip(tr("Clear all messages"));
+
+    openHelp = new QAction(tr("&Documentation"), this);
+    openHelp->setStatusTip(tr("Open help documentation."));
 
     fileMenu->addAction(saveAct);
+    editMenu->addAction(clearAct);
+    helpMenu->addAction(openHelp);
+
+    tidyMessages();
 
 
 }
@@ -44,13 +56,57 @@ Window::~Window()
 
 void Window::playAlert(){
 
+
+
     //player = new QMediaPlayer;
     //player->setMedia(QUrl::fromLocalFile("Alert.mp3"));
     //player->setVolume(15);
     //player->play();
 
+    //Really janky fix for making our mp3s stop playing and not getting static from our mediaplayer object
     //connect(player, SIGNAL(stateChanged(QMediaPlayer::State)), player, SLOT(stop()));
+
+    //must more elegant just to play a wav
     QSound::play("chime.wav");
+
+}
+
+
+void Window::tidyMessages(){
+
+    QFile file("test.txt");
+    if(!file.open(QIODevice::ReadWrite| QIODevice::Text)) {
+        QMessageBox::information(0, "error", file.errorString());
+    }
+
+    QString s;
+    QTextStream in(&file);
+
+    while(!in.atEnd()) {
+        QString line = in.readLine();
+        QRegularExpressionMatch match = re.match(line);
+        if(match.hasMatch()){
+            QString matched = match.captured(0);
+            QDate date = QDate::fromString(matched);
+            QDate curdate = QDate::currentDate();
+            if (date.addMonths(6) >= curdate){
+                s.append(line + "\n");
+
+            }
+
+        }
+
+    }
+
+    file.resize(0);
+    in << s;
+
+    file.close();
+
+
+
+
+
 
 }
 
@@ -79,6 +135,7 @@ bool Window::event(QEvent *event)
             QList<QListWidgetItem *> items = ui->clientList->findItems(m_networkListener->getMostRecentDisconnected()->name,  Qt::MatchContains);
 
             QListWidgetItem* item = ui->clientList->takeItem(ui->clientList->row(items.at(0)));
+            m_networkListener->removeClient(item->text());
             delete item;
             return true;
 }
@@ -109,6 +166,10 @@ void Window::sendMessage(){
         message = "IMPORTANT" + ui->inputField->text();
     }else{
         message = ui->inputField->text();
+    }
+
+    if (m_currentClient != NULL){
+        m_networkListener->sendDatagram(message, m_networkListener->getClient(m_currentClient->text()));
     }
     m_networkListener->sendDatagram(message);
 
@@ -150,7 +211,7 @@ void Window::saveMessage(Message *message){
         << " "
         << message->timestamp.toString("H:m:sa")
         << ": "
-        << message->message
+        << QString(message->data)
         << "\n";
 
     file.close();

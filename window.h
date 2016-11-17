@@ -43,7 +43,8 @@ public:
     //void handleMessage(Message message){ m_messageHandler->handleMessage(message); }
     bool event(QEvent *event);
 
-    void setName(QString pname){ name = pname;}
+    void setName(QString pname){ name = pname; m_networkListener->name = pname;}
+    const QString getName(){ return name; }
     void playAlert();
 
 
@@ -57,14 +58,18 @@ private:
     QMenu *formatMenu;
     QMenu *helpMenu;
     QMediaPlayer *player;
+    QRegularExpression re;
 
     QAction *saveAct;
+    QAction *openHelp;
+    QAction *clearAct;
 
 
 
     bool important = false;
 
     void closeEvent(QCloseEvent *event);
+    void tidyMessages();
 
 
 
