@@ -1,0 +1,80 @@
+\hypertarget{class_network_listener}{}\section{Network\+Listener Class Reference}
+\label{class_network_listener}\index{Network\+Listener@{Network\+Listener}}
+Inheritance diagram for Network\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_network_listener}
+\end{center}
+\end{figure}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_network_listener_a831238cc68f68ecac14a9a5b3d330f1b}{}void {\bfseries process\+Pending\+Datagrams} ()\label{class_network_listener_a831238cc68f68ecac14a9a5b3d330f1b}
+
+\item 
+\hypertarget{class_network_listener_a99aa1b32a4f64ad0c2d651b2a5ac9325}{}void {\bfseries send\+Datagram} (Q\+String a\+\_\+message, \hyperlink{struct_client}{Client} $\ast$a\+\_\+client=0)\label{class_network_listener_a99aa1b32a4f64ad0c2d651b2a5ac9325}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_network_listener_ad0b176bc71290ed0d15705ee1ffdcf42}{}{\bfseries Network\+Listener} (Q\+Object $\ast$parent=0)\label{class_network_listener_ad0b176bc71290ed0d15705ee1ffdcf42}
+
+\item 
+\hypertarget{class_network_listener_a3bb629317b41d6b1f99a5b07b42a284f}{}\hyperlink{struct_client}{Client} $\ast$ {\bfseries get\+Most\+Recent\+Client} ()\label{class_network_listener_a3bb629317b41d6b1f99a5b07b42a284f}
+
+\item 
+\hypertarget{class_network_listener_a9439e56b56ded28da4dc9c8584849e95}{}\hyperlink{struct_client}{Client} $\ast$ {\bfseries get\+Most\+Recent\+Disconnected} ()\label{class_network_listener_a9439e56b56ded28da4dc9c8584849e95}
+
+\item 
+\hypertarget{class_network_listener_a30a1a0a5b42a426dc86ac131bd11aafd}{}\hyperlink{struct_client}{Client} $\ast$ {\bfseries get\+Client} (Q\+String name)\label{class_network_listener_a30a1a0a5b42a426dc86ac131bd11aafd}
+
+\item 
+\hypertarget{class_network_listener_a989f81e745b1725562da7b6fcfadac83}{}void {\bfseries remove\+Client} (Q\+String name)\label{class_network_listener_a989f81e745b1725562da7b6fcfadac83}
+
+\item 
+\hypertarget{class_network_listener_aebdaf064bfc92c215266faa0a07ca61d}{}void {\bfseries send\+Hand\+Shake} (Q\+String name)\label{class_network_listener_aebdaf064bfc92c215266faa0a07ca61d}
+
+\item 
+\hypertarget{class_network_listener_a4905e63cbcdd10abd1cfdaff31364383}{}void {\bfseries send\+Hand\+Shake\+Reply} ()\label{class_network_listener_a4905e63cbcdd10abd1cfdaff31364383}
+
+\item 
+\hypertarget{class_network_listener_abd383f47c7878354e182093cd615ab23}{}void {\bfseries send\+Disconnect} (Q\+String name)\label{class_network_listener_abd383f47c7878354e182093cd615ab23}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_network_listener_af0f6d8c5a2b1b2c457e1e4ee68e1d4bf}{}Q\+String {\bfseries name}\label{class_network_listener_af0f6d8c5a2b1b2c457e1e4ee68e1d4bf}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_network_listener_a4283b85857436ac617eeb4c93fdf11ac}{}Q\+Host\+Address {\bfseries group\+Address}\label{class_network_listener_a4283b85857436ac617eeb4c93fdf11ac}
+
+\item 
+\hypertarget{class_network_listener_a9941fd48019abc42514df6b204228b74}{}Q\+Host\+Address {\bfseries local\+Address}\label{class_network_listener_a9941fd48019abc42514df6b204228b74}
+
+\item 
+\hypertarget{class_network_listener_adaba275a4d4b8bd16506f13f95b1575a}{}Q\+Udp\+Socket $\ast$ {\bfseries udp\+Socket\+Out}\label{class_network_listener_adaba275a4d4b8bd16506f13f95b1575a}
+
+\item 
+\hypertarget{class_network_listener_a5209ce2c1fcde559cd7bb499582bc31c}{}Q\+Udp\+Socket $\ast$ {\bfseries udp\+Socket\+In}\label{class_network_listener_a5209ce2c1fcde559cd7bb499582bc31c}
+
+\item 
+\hypertarget{class_network_listener_ad9e784d4d6f035ecc02d4b47368e727f}{}std\+::vector$<$ \hyperlink{struct_client}{Client} $>$ {\bfseries m\+\_\+client\+List}\label{class_network_listener_ad9e784d4d6f035ecc02d4b47368e727f}
+
+\item 
+\hypertarget{class_network_listener_aa22cfac015aabb913b1e91410a57c7c8}{}std\+::vector$<$ \hyperlink{struct_client}{Client} $>$ {\bfseries m\+\_\+disconnected}\label{class_network_listener_aa22cfac015aabb913b1e91410a57c7c8}
+
+\item 
+\hypertarget{class_network_listener_adb41464b0923c725f94001b73e51a820}{}\hyperlink{class_simple_crypt}{Simple\+Crypt} {\bfseries cryptodevice}\label{class_network_listener_adb41464b0923c725f94001b73e51a820}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+networklistener.\+h\item 
+networklistener.\+cpp\end{DoxyCompactItemize}

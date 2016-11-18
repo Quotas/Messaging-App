@@ -1,0 +1,326 @@
+\hypertarget{class_simple_crypt}{}\section{Simple\+Crypt Class Reference}
+\label{class_simple_crypt}\index{Simple\+Crypt@{Simple\+Crypt}}
+
+
+Simple encryption and decryption of strings and byte arrays.  
+
+
+
+
+{\ttfamily \#include $<$simplecrypt.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_simple_crypt_a25298e746f175cf175a18f082092ca8e}{Compression\+Mode} \{ \hyperlink{class_simple_crypt_a25298e746f175cf175a18f082092ca8ea8d04b76ed73553456ec87e88b18ddc66}{Compression\+Auto}, 
+\hyperlink{class_simple_crypt_a25298e746f175cf175a18f082092ca8ea10aec29129f4e6d08c4f61d7008ec8f7}{Compression\+Always}, 
+\hyperlink{class_simple_crypt_a25298e746f175cf175a18f082092ca8eadc794d925e3af54dcef9a24ee3f60f6d}{Compression\+Never}
+ \}
+\item 
+enum \hyperlink{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2d}{Integrity\+Protection\+Mode} \{ \hyperlink{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2da75547c41ccde1fb3d4db9f8c27164e4c}{Protection\+None}, 
+\hyperlink{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2dab6ccee9e9680f70c79213647c7814e5c}{Protection\+Checksum}, 
+\hyperlink{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2daf915c42837795744edbc5254eb93154f}{Protection\+Hash}
+ \}
+\item 
+enum \hyperlink{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09b}{Error} \{ \hyperlink{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09ba77b7389ae8659e97df448c8fff79ca83}{Error\+No\+Error}, 
+\hyperlink{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09bacfb6271ef5415fe5e6a0e5ee3094f3a7}{Error\+No\+Key\+Set}, 
+\hyperlink{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09ba4c43644f04a0eefc3ed2205223f19479}{Error\+Unknown\+Version}, 
+\hyperlink{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09ba8566157b59e4662d0400b34249918e88}{Error\+Integrity\+Failed}
+ \}
+\item 
+\hypertarget{class_simple_crypt_abc7918ae3afd91a98831fad119add27a}{}enum {\bfseries Crypto\+Flag} \{ {\bfseries Crypto\+Flag\+None} = 0, 
+{\bfseries Crypto\+Flag\+Compression} = 0x01, 
+{\bfseries Crypto\+Flag\+Checksum} = 0x02, 
+{\bfseries Crypto\+Flag\+Hash} = 0x04
+ \}\label{class_simple_crypt_abc7918ae3afd91a98831fad119add27a}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_simple_crypt_ac474d12cfa9f93bfecea35891831046d}{Simple\+Crypt} ()
+\item 
+\hyperlink{class_simple_crypt_a65942757b85b3dd36618ea3edc5ceb89}{Simple\+Crypt} (quint64 key)
+\item 
+void \hyperlink{class_simple_crypt_aa7aad9ed2e88b883ba9214c7d9928745}{set\+Key} (quint64 key)
+\item 
+void \hyperlink{class_simple_crypt_a7aa2679a2350622c649e8448545ae8a4}{gen\+Key} ()
+\item 
+\hypertarget{class_simple_crypt_aa7cab41b041f1fbe1c62e484fea895ce}{}bool \hyperlink{class_simple_crypt_aa7cab41b041f1fbe1c62e484fea895ce}{has\+Key} () const \label{class_simple_crypt_aa7cab41b041f1fbe1c62e484fea895ce}
+
+\begin{DoxyCompactList}\small\item\em generates a key and then sets it -\/ based on a timestamp that will change every 24 hours each client that uses this will generate the same key for the 24 hour period \end{DoxyCompactList}\item 
+void \hyperlink{class_simple_crypt_adc6c6355aa276c0d3516f7ad273f063b}{set\+Compression\+Mode} (\hyperlink{class_simple_crypt_a25298e746f175cf175a18f082092ca8e}{Compression\+Mode} mode)
+\item 
+\hyperlink{class_simple_crypt_a25298e746f175cf175a18f082092ca8e}{Compression\+Mode} \hyperlink{class_simple_crypt_a303253756b925678e53bafc8b72a4e96}{compression\+Mode} () const 
+\item 
+void \hyperlink{class_simple_crypt_a4fef5e6d3246ee57d6a7b68475b12b8b}{set\+Integrity\+Protection\+Mode} (\hyperlink{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2d}{Integrity\+Protection\+Mode} mode)
+\item 
+\hyperlink{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2d}{Integrity\+Protection\+Mode} \hyperlink{class_simple_crypt_a81929610d0fd5667db83603f396ddb66}{integrity\+Protection\+Mode} () const 
+\item 
+\hyperlink{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09b}{Error} \hyperlink{class_simple_crypt_a123562e29377ab26e3b398b588f596d9}{last\+Error} () const 
+\item 
+Q\+String \hyperlink{class_simple_crypt_af26a3d3c6cef9732190c1d2c6a53a5b5}{encrypt\+To\+String} (const Q\+String \&plaintext)
+\item 
+Q\+String \hyperlink{class_simple_crypt_aa72b79bf7a5bb971bf3b0a52b9247efd}{encrypt\+To\+String} (Q\+Byte\+Array plaintext)
+\item 
+Q\+Byte\+Array \hyperlink{class_simple_crypt_ae1991c7748b2bb74468bee0be372d2c4}{encrypt\+To\+Byte\+Array} (const Q\+String \&plaintext)
+\item 
+Q\+Byte\+Array \hyperlink{class_simple_crypt_a741305d04e86bcb7d4625b05bf234887}{encrypt\+To\+Byte\+Array} (Q\+Byte\+Array plaintext)
+\item 
+Q\+String \hyperlink{class_simple_crypt_aa454cf372b534fd5ffaa2c5bd0fa57ea}{decrypt\+To\+String} (const Q\+String \&cyphertext)
+\item 
+Q\+Byte\+Array \hyperlink{class_simple_crypt_ad6785e087d449a1aa80c39248e98fcda}{decrypt\+To\+Byte\+Array} (const Q\+String \&cyphertext)
+\item 
+Q\+String \hyperlink{class_simple_crypt_ad1a3257cefee43773803ec1b12654f92}{decrypt\+To\+String} (Q\+Byte\+Array cypher)
+\item 
+Q\+Byte\+Array \hyperlink{class_simple_crypt_a4babb69e45849f672574a26b6433c85a}{decrypt\+To\+Byte\+Array} (Q\+Byte\+Array cypher)
+\item 
+\hypertarget{class_simple_crypt_a710fb3871372ccddd6450f73afca24eb}{}{\bfseries Q\+\_\+\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+L\+A\+G\+S} (Crypto\+Flags, Crypto\+Flag)\label{class_simple_crypt_a710fb3871372ccddd6450f73afca24eb}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_simple_crypt_a0c315473b243f7a3f707a2d0fedf61b7}{}void {\bfseries split\+Key} ()\label{class_simple_crypt_a0c315473b243f7a3f707a2d0fedf61b7}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_simple_crypt_aefc99e850635cde7f13fb58e73a338ab}{}quint64 {\bfseries m\+\_\+key}\label{class_simple_crypt_aefc99e850635cde7f13fb58e73a338ab}
+
+\item 
+\hypertarget{class_simple_crypt_aac0bcad9eef0d0488ece419ef32c25f9}{}Q\+Vector$<$ char $>$ {\bfseries m\+\_\+key\+Parts}\label{class_simple_crypt_aac0bcad9eef0d0488ece419ef32c25f9}
+
+\item 
+\hypertarget{class_simple_crypt_a6d9a5f9ee813f93a40226b27f84043d1}{}\hyperlink{class_simple_crypt_a25298e746f175cf175a18f082092ca8e}{Compression\+Mode} {\bfseries m\+\_\+compression\+Mode}\label{class_simple_crypt_a6d9a5f9ee813f93a40226b27f84043d1}
+
+\item 
+\hypertarget{class_simple_crypt_a0fe57e519baf899804281db986bb0f82}{}\hyperlink{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2d}{Integrity\+Protection\+Mode} {\bfseries m\+\_\+protection\+Mode}\label{class_simple_crypt_a0fe57e519baf899804281db986bb0f82}
+
+\item 
+\hypertarget{class_simple_crypt_adccf15d36547ce4fe300e011774553ae}{}\hyperlink{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09b}{Error} {\bfseries m\+\_\+last\+Error}\label{class_simple_crypt_adccf15d36547ce4fe300e011774553ae}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Simple encryption and decryption of strings and byte arrays. 
+
+This class provides a simple implementation of encryption and decryption of strings and byte arrays.
+
+\begin{DoxyWarning}{Warning}
+The encryption provided by this class is N\+O\+T strong encryption. It may help to shield things from curious eyes, but it will N\+O\+T stand up to someone determined to break the encryption. Don't say you were not warned.
+\end{DoxyWarning}
+The class uses a 64 bit key. Simply create an instance of the class, set the key, and use the \hyperlink{class_simple_crypt_af26a3d3c6cef9732190c1d2c6a53a5b5}{encrypt\+To\+String()} method to calculate an encrypted version of the input string. To decrypt that string again, use an instance of \hyperlink{class_simple_crypt}{Simple\+Crypt} initialized with the same key, and call the \hyperlink{class_simple_crypt_aa454cf372b534fd5ffaa2c5bd0fa57ea}{decrypt\+To\+String()} method with the encrypted string. If the key matches, the decrypted version of the string will be returned again.
+
+If you do not provide a key, or if something else is wrong, the encryption and decryption function will return an empty string or will return a string containing nonsense. \hyperlink{class_simple_crypt_a123562e29377ab26e3b398b588f596d9}{last\+Error()} will return a value indicating if the method was succesful, and if not, why not.
+
+\hyperlink{class_simple_crypt}{Simple\+Crypt} is prepared for the case that the encryption and decryption algorithm is changed in a later version, by prepending a version identifier to the cypertext. 
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_simple_crypt_a25298e746f175cf175a18f082092ca8e}{}\index{Simple\+Crypt@{Simple\+Crypt}!Compression\+Mode@{Compression\+Mode}}
+\index{Compression\+Mode@{Compression\+Mode}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{Compression\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Simple\+Crypt\+::\+Compression\+Mode}}\label{class_simple_crypt_a25298e746f175cf175a18f082092ca8e}
+Compression\+Mode describes if compression will be applied to the data to be encrypted. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Compression\+Auto@{Compression\+Auto}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Compression\+Auto@{Compression\+Auto}}\item[{\em 
+\hypertarget{class_simple_crypt_a25298e746f175cf175a18f082092ca8ea8d04b76ed73553456ec87e88b18ddc66}{}Compression\+Auto\label{class_simple_crypt_a25298e746f175cf175a18f082092ca8ea8d04b76ed73553456ec87e88b18ddc66}
+}]Only apply compression if that results in a shorter plaintext. \index{Compression\+Always@{Compression\+Always}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Compression\+Always@{Compression\+Always}}\item[{\em 
+\hypertarget{class_simple_crypt_a25298e746f175cf175a18f082092ca8ea10aec29129f4e6d08c4f61d7008ec8f7}{}Compression\+Always\label{class_simple_crypt_a25298e746f175cf175a18f082092ca8ea10aec29129f4e6d08c4f61d7008ec8f7}
+}]Always apply compression. Note that for short inputs, a compression may result in longer data \index{Compression\+Never@{Compression\+Never}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Compression\+Never@{Compression\+Never}}\item[{\em 
+\hypertarget{class_simple_crypt_a25298e746f175cf175a18f082092ca8eadc794d925e3af54dcef9a24ee3f60f6d}{}Compression\+Never\label{class_simple_crypt_a25298e746f175cf175a18f082092ca8eadc794d925e3af54dcef9a24ee3f60f6d}
+}]Never apply compression. \end{description}
+\end{Desc}
+\hypertarget{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09b}{}\index{Simple\+Crypt@{Simple\+Crypt}!Error@{Error}}
+\index{Error@{Error}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{Error}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Simple\+Crypt\+::\+Error}}\label{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09b}
+Error describes the type of error that occured. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Error\+No\+Error@{Error\+No\+Error}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Error\+No\+Error@{Error\+No\+Error}}\item[{\em 
+\hypertarget{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09ba77b7389ae8659e97df448c8fff79ca83}{}Error\+No\+Error\label{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09ba77b7389ae8659e97df448c8fff79ca83}
+}]No error occurred. \index{Error\+No\+Key\+Set@{Error\+No\+Key\+Set}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Error\+No\+Key\+Set@{Error\+No\+Key\+Set}}\item[{\em 
+\hypertarget{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09bacfb6271ef5415fe5e6a0e5ee3094f3a7}{}Error\+No\+Key\+Set\label{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09bacfb6271ef5415fe5e6a0e5ee3094f3a7}
+}]No key was set. You can not encrypt or decrypt without a valid key. \index{Error\+Unknown\+Version@{Error\+Unknown\+Version}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Error\+Unknown\+Version@{Error\+Unknown\+Version}}\item[{\em 
+\hypertarget{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09ba4c43644f04a0eefc3ed2205223f19479}{}Error\+Unknown\+Version\label{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09ba4c43644f04a0eefc3ed2205223f19479}
+}]The version of this data is unknown, or the data is otherwise not valid. \index{Error\+Integrity\+Failed@{Error\+Integrity\+Failed}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Error\+Integrity\+Failed@{Error\+Integrity\+Failed}}\item[{\em 
+\hypertarget{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09ba8566157b59e4662d0400b34249918e88}{}Error\+Integrity\+Failed\label{class_simple_crypt_ab7f81049e78f021b55a36f7cfac5a09ba8566157b59e4662d0400b34249918e88}
+}]The integrity check of the data failed. Perhaps the wrong key was used. \end{description}
+\end{Desc}
+\hypertarget{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2d}{}\index{Simple\+Crypt@{Simple\+Crypt}!Integrity\+Protection\+Mode@{Integrity\+Protection\+Mode}}
+\index{Integrity\+Protection\+Mode@{Integrity\+Protection\+Mode}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{Integrity\+Protection\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Simple\+Crypt\+::\+Integrity\+Protection\+Mode}}\label{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2d}
+Integrity\+Protection\+Mode describes measures taken to make it possible to detect problems with the data or wrong decryption keys.
+
+Measures involve adding a checksum or a cryptograhpic hash to the data to be encrypted. This increases the length of the resulting cypertext, but makes it possible to check if the plaintext appears to be valid after decryption. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{Protection\+None@{Protection\+None}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Protection\+None@{Protection\+None}}\item[{\em 
+\hypertarget{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2da75547c41ccde1fb3d4db9f8c27164e4c}{}Protection\+None\label{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2da75547c41ccde1fb3d4db9f8c27164e4c}
+}]The integerity of the encrypted data is not protected. It is not really possible to detect a wrong key, for instance. \index{Protection\+Checksum@{Protection\+Checksum}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Protection\+Checksum@{Protection\+Checksum}}\item[{\em 
+\hypertarget{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2dab6ccee9e9680f70c79213647c7814e5c}{}Protection\+Checksum\label{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2dab6ccee9e9680f70c79213647c7814e5c}
+}]A simple checksum is used to verify that the data is in order. If not, an empty string is returned. \index{Protection\+Hash@{Protection\+Hash}!Simple\+Crypt@{Simple\+Crypt}}\index{Simple\+Crypt@{Simple\+Crypt}!Protection\+Hash@{Protection\+Hash}}\item[{\em 
+\hypertarget{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2daf915c42837795744edbc5254eb93154f}{}Protection\+Hash\label{class_simple_crypt_a42a5172e558d346b28421cc4e85feb2daf915c42837795744edbc5254eb93154f}
+}]A cryptographic hash is used to verify the integrity of the data. This method produces a much stronger, but longer check \end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_simple_crypt_ac474d12cfa9f93bfecea35891831046d}{}\index{Simple\+Crypt@{Simple\+Crypt}!Simple\+Crypt@{Simple\+Crypt}}
+\index{Simple\+Crypt@{Simple\+Crypt}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{Simple\+Crypt}]{\setlength{\rightskip}{0pt plus 5cm}Simple\+Crypt\+::\+Simple\+Crypt (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_ac474d12cfa9f93bfecea35891831046d}
+Constructor.
+
+Constructs a \hyperlink{class_simple_crypt}{Simple\+Crypt} instance without a valid key set on it. \hypertarget{class_simple_crypt_a65942757b85b3dd36618ea3edc5ceb89}{}\index{Simple\+Crypt@{Simple\+Crypt}!Simple\+Crypt@{Simple\+Crypt}}
+\index{Simple\+Crypt@{Simple\+Crypt}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{Simple\+Crypt}]{\setlength{\rightskip}{0pt plus 5cm}Simple\+Crypt\+::\+Simple\+Crypt (
+\begin{DoxyParamCaption}
+\item[{quint64}]{key}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\label{class_simple_crypt_a65942757b85b3dd36618ea3edc5ceb89}
+Constructor.
+
+Constructs a \hyperlink{class_simple_crypt}{Simple\+Crypt} instance and initializes it with the given \begin{DoxyItemize}
+\item key. \end{DoxyItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_simple_crypt_a303253756b925678e53bafc8b72a4e96}{}\index{Simple\+Crypt@{Simple\+Crypt}!compression\+Mode@{compression\+Mode}}
+\index{compression\+Mode@{compression\+Mode}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{compression\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Compression\+Mode} Simple\+Crypt\+::compression\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_simple_crypt_a303253756b925678e53bafc8b72a4e96}
+Returns the Compression\+Mode that is currently in use. \hypertarget{class_simple_crypt_ad6785e087d449a1aa80c39248e98fcda}{}\index{Simple\+Crypt@{Simple\+Crypt}!decrypt\+To\+Byte\+Array@{decrypt\+To\+Byte\+Array}}
+\index{decrypt\+To\+Byte\+Array@{decrypt\+To\+Byte\+Array}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{decrypt\+To\+Byte\+Array}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Byte\+Array Simple\+Crypt\+::decrypt\+To\+Byte\+Array (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{cyphertext}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_ad6785e087d449a1aa80c39248e98fcda}
+Decrypts a cyphertext string encrypted with this class with the set key back to the plain text version.
+
+If an error occured, such as non-\/matching keys between encryption and decryption, an empty string or a string containing nonsense may be returned. \hypertarget{class_simple_crypt_a4babb69e45849f672574a26b6433c85a}{}\index{Simple\+Crypt@{Simple\+Crypt}!decrypt\+To\+Byte\+Array@{decrypt\+To\+Byte\+Array}}
+\index{decrypt\+To\+Byte\+Array@{decrypt\+To\+Byte\+Array}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{decrypt\+To\+Byte\+Array}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Byte\+Array Simple\+Crypt\+::decrypt\+To\+Byte\+Array (
+\begin{DoxyParamCaption}
+\item[{Q\+Byte\+Array}]{cypher}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_a4babb69e45849f672574a26b6433c85a}
+Decrypts a cyphertext binary encrypted with this class with the set key back to the plain text version.
+
+If an error occured, such as non-\/matching keys between encryption and decryption, an empty string or a string containing nonsense may be returned. \hypertarget{class_simple_crypt_aa454cf372b534fd5ffaa2c5bd0fa57ea}{}\index{Simple\+Crypt@{Simple\+Crypt}!decrypt\+To\+String@{decrypt\+To\+String}}
+\index{decrypt\+To\+String@{decrypt\+To\+String}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{decrypt\+To\+String}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Simple\+Crypt\+::decrypt\+To\+String (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{cyphertext}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_aa454cf372b534fd5ffaa2c5bd0fa57ea}
+Decrypts a cyphertext string encrypted with this class with the set key back to the plain text version.
+
+If an error occured, such as non-\/matching keys between encryption and decryption, an empty string or a string containing nonsense may be returned. \hypertarget{class_simple_crypt_ad1a3257cefee43773803ec1b12654f92}{}\index{Simple\+Crypt@{Simple\+Crypt}!decrypt\+To\+String@{decrypt\+To\+String}}
+\index{decrypt\+To\+String@{decrypt\+To\+String}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{decrypt\+To\+String}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Simple\+Crypt\+::decrypt\+To\+String (
+\begin{DoxyParamCaption}
+\item[{Q\+Byte\+Array}]{cypher}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_ad1a3257cefee43773803ec1b12654f92}
+Decrypts a cyphertext binary encrypted with this class with the set key back to the plain text version.
+
+If an error occured, such as non-\/matching keys between encryption and decryption, an empty string or a string containing nonsense may be returned. \hypertarget{class_simple_crypt_ae1991c7748b2bb74468bee0be372d2c4}{}\index{Simple\+Crypt@{Simple\+Crypt}!encrypt\+To\+Byte\+Array@{encrypt\+To\+Byte\+Array}}
+\index{encrypt\+To\+Byte\+Array@{encrypt\+To\+Byte\+Array}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{encrypt\+To\+Byte\+Array}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Byte\+Array Simple\+Crypt\+::encrypt\+To\+Byte\+Array (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{plaintext}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_ae1991c7748b2bb74468bee0be372d2c4}
+Encrypts the \begin{DoxyItemize}
+\item plaintext string with the key the class was initialized with, and returns a binary cyphertext in a Q\+Byte\+Array the result.\end{DoxyItemize}
+This method returns a byte array, that is useable for storing a binary format. If you need a string you can store in a text file, use \hyperlink{class_simple_crypt_af26a3d3c6cef9732190c1d2c6a53a5b5}{encrypt\+To\+String()} instead. \hypertarget{class_simple_crypt_a741305d04e86bcb7d4625b05bf234887}{}\index{Simple\+Crypt@{Simple\+Crypt}!encrypt\+To\+Byte\+Array@{encrypt\+To\+Byte\+Array}}
+\index{encrypt\+To\+Byte\+Array@{encrypt\+To\+Byte\+Array}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{encrypt\+To\+Byte\+Array}]{\setlength{\rightskip}{0pt plus 5cm}Q\+Byte\+Array Simple\+Crypt\+::encrypt\+To\+Byte\+Array (
+\begin{DoxyParamCaption}
+\item[{Q\+Byte\+Array}]{plaintext}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_a741305d04e86bcb7d4625b05bf234887}
+Encrypts the \begin{DoxyItemize}
+\item plaintext Q\+Byte\+Array with the key the class was initialized with, and returns a binary cyphertext in a Q\+Byte\+Array the result.\end{DoxyItemize}
+This method returns a byte array, that is useable for storing a binary format. If you need a string you can store in a text file, use \hyperlink{class_simple_crypt_af26a3d3c6cef9732190c1d2c6a53a5b5}{encrypt\+To\+String()} instead. \hypertarget{class_simple_crypt_af26a3d3c6cef9732190c1d2c6a53a5b5}{}\index{Simple\+Crypt@{Simple\+Crypt}!encrypt\+To\+String@{encrypt\+To\+String}}
+\index{encrypt\+To\+String@{encrypt\+To\+String}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{encrypt\+To\+String}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Simple\+Crypt\+::encrypt\+To\+String (
+\begin{DoxyParamCaption}
+\item[{const Q\+String \&}]{plaintext}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_af26a3d3c6cef9732190c1d2c6a53a5b5}
+Encrypts the \begin{DoxyItemize}
+\item plaintext string with the key the class was initialized with, and returns a cyphertext the result. The result is a base64 encoded version of the binary array that is the actual result of the string, so it can be stored easily in a text format. \end{DoxyItemize}
+\hypertarget{class_simple_crypt_aa72b79bf7a5bb971bf3b0a52b9247efd}{}\index{Simple\+Crypt@{Simple\+Crypt}!encrypt\+To\+String@{encrypt\+To\+String}}
+\index{encrypt\+To\+String@{encrypt\+To\+String}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{encrypt\+To\+String}]{\setlength{\rightskip}{0pt plus 5cm}Q\+String Simple\+Crypt\+::encrypt\+To\+String (
+\begin{DoxyParamCaption}
+\item[{Q\+Byte\+Array}]{plaintext}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_aa72b79bf7a5bb971bf3b0a52b9247efd}
+Encrypts the \begin{DoxyItemize}
+\item plaintext Q\+Byte\+Array with the key the class was initialized with, and returns a cyphertext the result. The result is a base64 encoded version of the binary array that is the actual result of the encryption, so it can be stored easily in a text format. \end{DoxyItemize}
+\hypertarget{class_simple_crypt_a7aa2679a2350622c649e8448545ae8a4}{}\index{Simple\+Crypt@{Simple\+Crypt}!gen\+Key@{gen\+Key}}
+\index{gen\+Key@{gen\+Key}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{gen\+Key}]{\setlength{\rightskip}{0pt plus 5cm}void Simple\+Crypt\+::gen\+Key (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_a7aa2679a2350622c649e8448545ae8a4}
+Returns true if \hyperlink{class_simple_crypt}{Simple\+Crypt} has been initialized with a key. \hypertarget{class_simple_crypt_a81929610d0fd5667db83603f396ddb66}{}\index{Simple\+Crypt@{Simple\+Crypt}!integrity\+Protection\+Mode@{integrity\+Protection\+Mode}}
+\index{integrity\+Protection\+Mode@{integrity\+Protection\+Mode}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{integrity\+Protection\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Integrity\+Protection\+Mode} Simple\+Crypt\+::integrity\+Protection\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_simple_crypt_a81929610d0fd5667db83603f396ddb66}
+Returns the Integrity\+Protection\+Mode that is currently in use. \hypertarget{class_simple_crypt_a123562e29377ab26e3b398b588f596d9}{}\index{Simple\+Crypt@{Simple\+Crypt}!last\+Error@{last\+Error}}
+\index{last\+Error@{last\+Error}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{last\+Error}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Error} Simple\+Crypt\+::last\+Error (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{class_simple_crypt_a123562e29377ab26e3b398b588f596d9}
+Returns the last error that occurred. \hypertarget{class_simple_crypt_adc6c6355aa276c0d3516f7ad273f063b}{}\index{Simple\+Crypt@{Simple\+Crypt}!set\+Compression\+Mode@{set\+Compression\+Mode}}
+\index{set\+Compression\+Mode@{set\+Compression\+Mode}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{set\+Compression\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}void Simple\+Crypt\+::set\+Compression\+Mode (
+\begin{DoxyParamCaption}
+\item[{{\bf Compression\+Mode}}]{mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_simple_crypt_adc6c6355aa276c0d3516f7ad273f063b}
+Sets the compression mode to use when encrypting data. The default mode is Auto.
+
+Note that decryption is not influenced by this mode, as the decryption recognizes what mode was used when encrypting. \hypertarget{class_simple_crypt_a4fef5e6d3246ee57d6a7b68475b12b8b}{}\index{Simple\+Crypt@{Simple\+Crypt}!set\+Integrity\+Protection\+Mode@{set\+Integrity\+Protection\+Mode}}
+\index{set\+Integrity\+Protection\+Mode@{set\+Integrity\+Protection\+Mode}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{set\+Integrity\+Protection\+Mode}]{\setlength{\rightskip}{0pt plus 5cm}void Simple\+Crypt\+::set\+Integrity\+Protection\+Mode (
+\begin{DoxyParamCaption}
+\item[{{\bf Integrity\+Protection\+Mode}}]{mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{class_simple_crypt_a4fef5e6d3246ee57d6a7b68475b12b8b}
+Sets the integrity mode to use when encrypting data. The default mode is Checksum.
+
+Note that decryption is not influenced by this mode, as the decryption recognizes what mode was used when encrypting. \hypertarget{class_simple_crypt_aa7aad9ed2e88b883ba9214c7d9928745}{}\index{Simple\+Crypt@{Simple\+Crypt}!set\+Key@{set\+Key}}
+\index{set\+Key@{set\+Key}!Simple\+Crypt@{Simple\+Crypt}}
+\subsubsection[{set\+Key}]{\setlength{\rightskip}{0pt plus 5cm}void Simple\+Crypt\+::set\+Key (
+\begin{DoxyParamCaption}
+\item[{quint64}]{key}
+\end{DoxyParamCaption}
+)}\label{class_simple_crypt_aa7aad9ed2e88b883ba9214c7d9928745}
+(Re-\/) initializes the key with the given \begin{DoxyItemize}
+\item key. \end{DoxyItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+simplecrypt.\+h\item 
+simplecrypt.\+cpp\end{DoxyCompactItemize}

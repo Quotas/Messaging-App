@@ -96,7 +96,7 @@ public:
         QWidget::setTabOrder(messageField, clientList);
 
         retranslateUi(Window);
-        QObject::connect(clearButton, SIGNAL(clicked()), inputField, SLOT(clear()));
+        QObject::connect(clearButton, SIGNAL(clicked()), messageField, SLOT(clear()));
         QObject::connect(inputField, SIGNAL(returnPressed()), submitButton, SLOT(click()));
 
         submitButton->setDefault(true);

@@ -463,6 +463,8 @@ release\moc_window.cpp: C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qaudio.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\QSound \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qsound.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QDesktopServices \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qdesktopservices.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QUuid \
 		customevents.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QEvent \
@@ -1304,6 +1306,8 @@ release\main.obj: main.cpp window.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qaudio.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\QSound \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qsound.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QDesktopServices \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qdesktopservices.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QUuid \
 		customevents.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QEvent \
@@ -1618,6 +1622,8 @@ release\window.obj: window.cpp window.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qaudio.h \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\QSound \
 		C:\Qt\5.7\msvc2015_64\include\QtMultimedia\qsound.h \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\QDesktopServices \
+		C:\Qt\5.7\msvc2015_64\include\QtGui\qdesktopservices.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QUuid \
 		customevents.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QEvent \
@@ -1627,38 +1633,7 @@ release\window.obj: window.cpp window.h \
 		simplecrypt.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QVector \
 		client.h \
-		ui_window.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QAction \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qaction.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qactiongroup.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QApplication \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qapplication.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qguiapplication.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qinputmethod.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QButtonGroup \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qbuttongroup.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QCheckBox \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qcheckbox.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractbutton.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QHeaderView \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qheaderview.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QLabel \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qlabel.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QLineEdit \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QMenuBar \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qmenubar.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qmenu.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QPushButton \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qpushbutton.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QStatusBar \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qstatusbar.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QTextEdit \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qtextedit.h \
-		C:\Qt\5.7\msvc2015_64\include\QtGui\qtextdocument.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QToolBar \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\qtoolbar.h \
-		C:\Qt\5.7\msvc2015_64\include\QtWidgets\QWidget
+		ui_window.h
 
 release\simplecrypt.obj: simplecrypt.cpp simplecrypt.h \
 		C:\Qt\5.7\msvc2015_64\include\QtCore\QString \

@@ -11,6 +11,8 @@
 #include <QMediaPlayer>
 #include <QSound>
 #include <WinSock2.h>
+#include <QDesktopServices>
+#include <QUrl>
 
 #include <QUuid>
 #include <fstream>
@@ -76,6 +78,7 @@ private:
 private slots:
     void sendMessage();
     void toggleImportant();
+    void openHelpDoc();
     void saveMessage(Message *message);
     void updateCurrentClient(QListWidgetItem* item){ m_currentClient = item; qDebug() << m_currentClient->text(); }
 };

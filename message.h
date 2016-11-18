@@ -6,7 +6,12 @@
 
 
 
-enum MessageType { HANDSHAKE, IMPORTANT, DEFAULT, HANDSHAKE_REPLY, DISCONNECT };
+enum MessageType { HANDSHAKE, /*!< Initial Handshake packet type. */
+                   IMPORTANT,
+                   DEFAULT,
+                   HANDSHAKE_REPLY,
+                   DISCONNECT
+                 };
 
 struct Message{
 

@@ -5,6 +5,8 @@ extern Message* NullMessage;
 std::vector<Message> MessageHandler::m_sentMessages = {};
 std::vector<Message> MessageHandler::m_receivedMessages = {};
 
+//static message interface class for accessing sent and received messages globally throughout our program
+
 Message *MessageHandler::getMostRecentMessage(bool received){
 
     if (received){
@@ -34,6 +36,8 @@ void MessageHandler::handleMessage(Message message, bool received){
 
 
 }
+
+//static instance of our class we dont ever call this contrusctor but we need to foward delcare so we can have static member vars
 
 MessageHandler::MessageHandler(QObject *parent) : QObject(parent)
 {
