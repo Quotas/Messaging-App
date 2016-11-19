@@ -37,10 +37,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   This class provides a simple implementation of encryption and decryption
   of strings and byte arrays.
 
-  @warning The encryption provided by this class is NOT strong encryption. It may
-  help to shield things from curious eyes, but it will NOT stand up to someone
-  determined to break the encryption. Don't say you were not warned.
-
   The class uses a 64 bit key. Simply create an instance of the class, set the key,
   and use the encryptToString() method to calculate an encrypted version of the input string.
   To decrypt that string again, use an instance of SimpleCrypt initialized with
